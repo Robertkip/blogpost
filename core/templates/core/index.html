@@ -1,0 +1,27 @@
+<!-- core/templates/core/index.html -->
+
+{% block page_title %}
+    <h2>Blog Posts</h2>
+
+{% endblock page_title %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block page_content %}
+    {% block posts %}
+        {% for post in posts %}
+        <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
+            <strong>
+                 Categories:
+                {% for category in post.categories.all %}
+                <a href="{% url 'blog_category' category.name %}">
+                        {{ category.name }}
+                    </a>
+                    {% endfor %}
+            </strong>
+
+            <p>{{ post.content |slice:":600" }} ..</p>
+        {% endfor %}
+    {% endblock posts %}
+{% endblock page_content %}

@@ -1,0 +1,19 @@
+<!-- search.html -->
+<h1>Search Items</h1>
+<form method="GET" action="">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+<h2>Results:</h2>
+<ul>
+    {% for post in results %}
+    <h2>
+        {{ post.title }}
+    </h2>
+        <p>{{ post.content }}</p>
+
+    {% empty %}
+        <li>No results found.</li>
+    {% endfor %}
+</ul>

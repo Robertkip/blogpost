@@ -1,0 +1,17 @@
+<!-- core/templates/core/detail.html -->
+
+{% block page_title %}
+    <h2>{{ post.title }}</h2>
+{% endblock page_title %}
+
+{% block page_content %}
+    <small>
+        {{ post.created }} | Categories:
+        {% for category in post.categories.all %}
+            <a href="{% url 'blog_category' category.name %}">
+                {{ category.name }}
+            </a>
+        {% endfor %}
+    </small>
+    <p>{{ post.content | linebreaks }}</p>
+{% endblock page_content %}
